@@ -1,0 +1,1 @@
+const kLogin = 'login';
