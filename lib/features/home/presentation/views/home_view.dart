@@ -41,7 +41,7 @@ class HomeView extends StatelessWidget {
                   return const SizedBox();
                 },
               ),
-              verticalSpace(20), // Add some bottom padding
+              verticalSpace(20),
             ],
           ),
         ),

@@ -11,6 +11,8 @@ import 'package:e_commerce_task/features/bottom_bar/presentation/views/bottom_na
 import 'package:e_commerce_task/features/home/data/repositories/product_repository.dart';
 import 'package:e_commerce_task/features/home/presentation/bloc/product_cubit/product_cubit.dart';
 import 'package:e_commerce_task/features/home/presentation/views/home_view.dart';
+import 'package:e_commerce_task/features/home/presentation/views/product_details_view.dart';
+import 'package:e_commerce_task/features/home/data/models/product_model.dart';
 import 'package:e_commerce_task/features/cart/presentation/views/cart_view.dart';
 import 'package:e_commerce_task/features/favorites/presentation/views/favorites_view.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +59,11 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const FavoritesView());
       case Routes.profile:
         return MaterialPageRoute(builder: (_) => const Scaffold());
+      case Routes.productDetails:
+        final product = settings.arguments as ProductModel;
+        return MaterialPageRoute(
+          builder: (_) => ProductDetailsView(product: product),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

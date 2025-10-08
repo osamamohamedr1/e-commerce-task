@@ -1,4 +1,5 @@
 import 'package:e_commerce_task/core/utils/assets.dart';
+import 'package:e_commerce_task/features/home/presentation/views/product_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +21,16 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap:
+          onTap ??
+          () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProductDetailsView(product: product),
+              ),
+            );
+          },
       child: Container(
         height: 200.h,
         decoration: BoxDecoration(

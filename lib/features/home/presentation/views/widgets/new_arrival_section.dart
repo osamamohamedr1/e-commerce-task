@@ -1,4 +1,5 @@
 import 'package:e_commerce_task/core/constants/spacing.dart';
+import 'package:e_commerce_task/features/home/presentation/views/product_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:e_commerce_task/features/home/data/models/product_model.dart';
@@ -48,7 +49,14 @@ class NewArrivalSection extends StatelessWidget {
             final product = products[index];
             return ProductCard(
               product: product,
-
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductDetailsView(product: product),
+                  ),
+                );
+              },
               onFavoritePressed: () => onFavoritePressed?.call(product),
             );
           },
