@@ -57,7 +57,6 @@ class _LoginViewState extends State<LoginView> {
                 onPressed: () => _handleLogin(context),
               ),
               verticalSpace(32.h),
-              verticalSpace(50.h),
               const DontHaveAccount(),
               const LoginBlocListener(),
             ],
