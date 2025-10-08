@@ -2,7 +2,7 @@ import 'package:e_commerce_task/core/routing/routes.dart';
 import 'package:e_commerce_task/core/utils/service_locator.dart';
 import 'package:e_commerce_task/features/authentication/data/repositories/auth_repo.dart';
 import 'package:e_commerce_task/features/authentication/data/repositories/verify_mail_repo.dart';
-import 'package:e_commerce_task/features/authentication/presentation/bloc/login_cubit/auth_cubit.dart';
+import 'package:e_commerce_task/features/authentication/presentation/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_task/features/authentication/presentation/bloc/otp_cubit/otp_cubit.dart';
 import 'package:e_commerce_task/features/authentication/presentation/views/login_view.dart';
 import 'package:e_commerce_task/features/authentication/presentation/views/register_view.dart';

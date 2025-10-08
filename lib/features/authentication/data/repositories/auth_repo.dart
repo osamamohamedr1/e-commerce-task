@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:e_commerce_task/core/constants/consts.dart';
+import 'package:e_commerce_task/core/utils/cache_helper.dart';
 import 'package:e_commerce_task/core/utils/errors.dart';
 import 'package:e_commerce_task/features/authentication/data/datasources/auth_api_service.dart';
 import 'package:e_commerce_task/features/authentication/data/models/login_response_model.dart';
@@ -23,6 +25,14 @@ class AuthRepositoryImpl extends AuthRepository {
   }) async {
     try {
       var result = await authApiService.login(email: email, password: password);
+      await CacheHelper.saveSecuredData(
+        key: kAccessToken,
+        value: result.accessToken,
+      );
+      await CacheHelper.saveSecuredData(
+        key: kRefreshToken,
+        value: result.refreshToken,
+      );
       return right(result);
     } catch (e) {
       return left(ServerFailure.fromException(e));

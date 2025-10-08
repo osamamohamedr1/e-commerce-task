@@ -2,7 +2,7 @@ import 'package:e_commerce_task/core/routing/routes.dart';
 import 'package:e_commerce_task/core/utils/extensions.dart';
 import 'package:e_commerce_task/core/utils/show_error_dialog.dart';
 import 'package:e_commerce_task/core/utils/show_loading_dialog.dart';
-import 'package:e_commerce_task/features/authentication/presentation/bloc/login_cubit/auth_cubit.dart';
+import 'package:e_commerce_task/features/authentication/presentation/bloc/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

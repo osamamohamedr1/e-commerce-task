@@ -2,7 +2,7 @@ import 'package:e_commerce_task/core/constants/spacing.dart';
 import 'package:e_commerce_task/core/utils/text_styles.dart';
 import 'package:e_commerce_task/core/widgets/custom_button.dart';
 import 'package:e_commerce_task/features/authentication/data/models/register_body_model.dart';
-import 'package:e_commerce_task/features/authentication/presentation/bloc/login_cubit/auth_cubit.dart';
+import 'package:e_commerce_task/features/authentication/presentation/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_task/features/authentication/presentation/views/widgets/have_account.dart';
 import 'package:e_commerce_task/features/authentication/presentation/views/widgets/register_form.dart';
 import 'package:e_commerce_task/features/authentication/presentation/views/widgets/register_bloc_listner.dart';
