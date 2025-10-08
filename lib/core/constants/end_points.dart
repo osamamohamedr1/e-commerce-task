@@ -4,7 +4,7 @@ const kRegisterEndPoint = "auth/register";
 const kVerifyEmailEndPoint = "auth/verify-email";
 const kResendOtpEndPoint = "auth/resend-otp";
 //
-const kProductsEndPoint = "Products";
+const kProductsEndPoint = "products";
 const kCategoriesEndPoint = "Categories";
 const kFavoritesEndPoint = "Favorites";
 const kCartsEndPoint = "Carts";

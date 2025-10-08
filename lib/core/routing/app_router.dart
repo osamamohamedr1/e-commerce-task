@@ -8,6 +8,8 @@ import 'package:e_commerce_task/features/authentication/presentation/views/login
 import 'package:e_commerce_task/features/authentication/presentation/views/register_view.dart';
 import 'package:e_commerce_task/features/authentication/presentation/views/verify_mail_view.dart';
 import 'package:e_commerce_task/features/bottom_bar/presentation/views/bottom_nav_bar.dart';
+import 'package:e_commerce_task/features/home/data/repositories/product_repository.dart';
+import 'package:e_commerce_task/features/home/presentation/bloc/product_cubit/product_cubit.dart';
 import 'package:e_commerce_task/features/home/presentation/views/home_view.dart';
 import 'package:e_commerce_task/features/cart/presentation/views/cart_view.dart';
 import 'package:e_commerce_task/features/favorites/presentation/views/favorites_view.dart';
@@ -32,7 +34,13 @@ class AppRouter {
           ),
         );
       case Routes.bottomBar:
-        return MaterialPageRoute(builder: (_) => const BottomNavBar());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                ProductCubit(getIt<ProductRepositoryImpl>())..getProducts(),
+            child: const BottomNavBar(),
+          ),
+        );
       case Routes.verifyEmail:
         final email = settings.arguments as String? ?? 'user@example.com';
         return MaterialPageRoute(
