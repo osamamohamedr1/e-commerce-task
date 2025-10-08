@@ -1,4 +1,5 @@
 import 'package:e_commerce_task/core/constants/spacing.dart';
+import 'package:e_commerce_task/core/utils/text_styles.dart';
 import 'package:e_commerce_task/core/widgets/custom_button.dart';
 import 'package:e_commerce_task/features/authentication/data/models/register_body_model.dart';
 import 'package:e_commerce_task/features/authentication/presentation/bloc/login_cubit/auth_cubit.dart';
@@ -54,7 +55,19 @@ class _RegisterViewState extends State<RegisterView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              verticalSpace(60.h),
+              verticalSpace(70.h),
+              Text(
+                'Create Account',
+                style: TextStyles.font24PrimaryBold,
+                textAlign: TextAlign.center,
+              ),
+              verticalSpace(12.h),
+              Text(
+                'Join us today! Create your account to start\nshopping and enjoy exclusive offers',
+                style: TextStyles.font14Secondary,
+                textAlign: TextAlign.center,
+              ),
+              verticalSpace(32.h),
               RegisterForm(
                 formKey: formKey,
 

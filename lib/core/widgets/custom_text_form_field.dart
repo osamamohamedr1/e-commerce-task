@@ -34,14 +34,18 @@ class CustomTextFormField extends StatelessWidget {
       },
       obscureText: obscureText ?? false,
       style: Theme.of(context).textTheme.labelLarge,
+
       decoration: InputDecoration(
         hintText: hintText,
         isDense: true,
+
         suffixIcon: suffixIcon,
         filled: true,
         contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
-        fillColor: ColorsManger.background,
-        hintStyle: Theme.of(context).textTheme.labelSmall,
+        fillColor: Colors.grey.shade50,
+        hintStyle: Theme.of(
+          context,
+        ).textTheme.labelSmall?.copyWith(color: ColorsManger.hintText),
 
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),

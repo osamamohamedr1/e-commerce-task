@@ -22,7 +22,7 @@ class DontHaveAccount extends StatelessWidget {
             ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                context.pushReplacementNamed(Routes.register);
+                context.pushNamed(Routes.register);
               },
           ),
         ],

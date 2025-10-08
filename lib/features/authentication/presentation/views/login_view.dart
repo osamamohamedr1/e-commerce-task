@@ -1,4 +1,6 @@
 import 'package:e_commerce_task/core/constants/spacing.dart';
+import 'package:e_commerce_task/core/utils/assets.dart';
+import 'package:e_commerce_task/core/utils/text_styles.dart';
 import 'package:e_commerce_task/core/widgets/custom_button.dart';
 
 import 'package:e_commerce_task/features/authentication/presentation/bloc/login_cubit/auth_cubit.dart';
@@ -39,27 +41,51 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.w),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              verticalSpace(136.h),
-              LoginForm(
-                formKey: formKey,
-                userNameController: userNameController,
-                passwordController: passwordController,
-              ),
-              verticalSpace(16.h),
-              CustomButton(
-                text: 'Login',
-                onPressed: () => _handleLogin(context),
-              ),
-              verticalSpace(32.h),
-              const DontHaveAccount(),
-              const LoginBlocListener(),
-            ],
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                verticalSpace(60.h),
+                Image.asset(
+                  Assets.imagesLogo,
+                  height: 100.h,
+                  fit: BoxFit.contain,
+                ),
+                verticalSpace(32.h),
+                Text(
+                  'Welcome Back!',
+                  style: TextStyles.font24PrimaryBold.copyWith(
+                    fontSize: 28.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpace(8.h),
+                Text(
+                  'Sign in to your account to continue shopping.',
+                  style: TextStyles.font14Secondary.copyWith(fontSize: 16.sp),
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpace(30.h),
+
+                LoginForm(
+                  formKey: formKey,
+                  userNameController: userNameController,
+                  passwordController: passwordController,
+                ),
+                verticalSpace(24.h),
+                CustomButton(
+                  text: 'Sign In',
+                  onPressed: () => _handleLogin(context),
+                ),
+                verticalSpace(32.h),
+                const DontHaveAccount(),
+                verticalSpace(20.h),
+                const LoginBlocListener(),
+              ],
+            ),
           ),
         ),
       ),
