@@ -13,5 +13,17 @@ class Assets {
   /// Assets for svgsBubblle
   /// assets/svgs/bubblle.svg
   static const String svgsBubblle = "assets/svgs/bubblle.svg";
+
+  /// Assets for svgsCart
+  /// assets/svgs/cart.svg
+  static const String svgsCart = "assets/svgs/cart.svg";
+
+  /// Assets for svgsFavorite
+  /// assets/svgs/favorite.svg
+  static const String svgsFavorite = "assets/svgs/favorite.svg";
+
+  /// Assets for svgsHome
+  /// assets/svgs/home.svg
+  static const String svgsHome = "assets/svgs/home.svg";
 }
 

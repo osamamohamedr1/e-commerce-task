@@ -7,6 +7,10 @@ import 'package:e_commerce_task/features/authentication/presentation/bloc/otp_cu
 import 'package:e_commerce_task/features/authentication/presentation/views/login_view.dart';
 import 'package:e_commerce_task/features/authentication/presentation/views/register_view.dart';
 import 'package:e_commerce_task/features/authentication/presentation/views/verify_mail_view.dart';
+import 'package:e_commerce_task/features/bottom_bar/presentation/views/bottom_nav_bar.dart';
+import 'package:e_commerce_task/features/home/presentation/views/home_view.dart';
+import 'package:e_commerce_task/features/cart/presentation/views/cart_view.dart';
+import 'package:e_commerce_task/features/favorites/presentation/views/favorites_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,7 +32,7 @@ class AppRouter {
           ),
         );
       case Routes.bottomBar:
-        return MaterialPageRoute(builder: (_) => const Scaffold());
+        return MaterialPageRoute(builder: (_) => const BottomNavBar());
       case Routes.verifyEmail:
         final email = settings.arguments as String? ?? 'user@example.com';
         return MaterialPageRoute(
@@ -37,8 +41,12 @@ class AppRouter {
             child: VerifyMailView(email: email),
           ),
         );
+      case Routes.home:
+        return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.cart:
-        return MaterialPageRoute(builder: (_) => const Scaffold());
+        return MaterialPageRoute(builder: (_) => const CartView());
+      case Routes.favorites:
+        return MaterialPageRoute(builder: (_) => const FavoritesView());
       case Routes.profile:
         return MaterialPageRoute(builder: (_) => const Scaffold());
       default:
