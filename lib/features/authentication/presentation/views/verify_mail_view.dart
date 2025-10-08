@@ -74,11 +74,7 @@ class _VerifyMailViewState extends State<VerifyMailView> {
                   onCompleted: _handleOtpCompleted,
                 ),
 
-                verticalSpace(32),
-
-                // // Resend Code Section
-                // ResendCodeSection(onResendCode: _handleResendCode),
-                verticalSpace(48),
+                verticalSpace(55),
 
                 VerificationActionButtons(
                   onVerify: _handleVerification,
