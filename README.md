@@ -215,19 +215,26 @@ lib/
 
 ## 📸 Screenshots
 
-> **Note**: Screenshots showcasing the app's features and UI design.
+### 🔐 Authentication Flow
 
-### Authentication Flow
-<img width="1080" height="2340" alt="Screenshot_1759950820" src="https://github.com/user-attachments/assets/4fb25d04-4b86-49ab-857c-221d10c4456c" />
-<img width="1080" height="2340" alt="Screenshot_1759950852" src="https://github.com/user-attachments/assets/1db388e0-b55d-445d-84c2-01d0d7669d18" />
-<img width="1080" height="2340" alt="Screenshot_1759950816" src="https://github.com/user-attachments/assets/4e1ed31b-2d46-40c3-95ce-5dce1f2683fa" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4fb25d04-4b86-49ab-857c-221d10c4456c" width="250" />
+  <img src="https://github.com/user-attachments/assets/1db388e0-b55d-445d-84c2-01d0d7669d18" width="250" />
+  <img src="https://github.com/user-attachments/assets/4e1ed31b-2d46-40c3-95ce-5dce1f2683fa" width="250" />
+</p>
 
+---
 
-### Home &  Product Details
+### 🏠 Home & 🛍️ Product Details
 
-<img width="1080" height="2340" alt="Screenshot_1759950771" src="https://github.com/user-attachments/assets/a4998a1f-23be-442e-b6ea-79a808ad5254" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a4998a1f-23be-442e-b6ea-79a808ad5254" width="250" />
+  <img src="https://github.com/user-attachments/assets/63a3e8b6-de58-4084-b469-a864f37d09d2" width="250" />
+</p>
 
-<img width="1080" height="2340" alt="Screenshot_1759950775" src="https://github.com/user-attachments/assets/63a3e8b6-de58-4084-b469-a864f37d09d2" />
+---
+
+<p align="center"><i>Built with ❤️ using Flutter</i></p>
 
 
 
