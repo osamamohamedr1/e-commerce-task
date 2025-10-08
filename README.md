@@ -30,13 +30,8 @@ The app uses **Flutter BLoC** for state management, specifically the **Cubit** p
 
 ```dart
 class ProductCubit extends Cubit<ProductState> {
-  ProductCubit(this._productRepository) : super(ProductInitial());
-
-  final ProductRepository _productRepository;
-
   Future<void> getProducts() async {
     emit(ProductLoading());
-    
     var result = await _productRepository.getProducts();
     result.fold(
       (failure) => emit(ProductFailure(failure.errorMessage)),
@@ -56,10 +51,7 @@ class ProductCubit extends Cubit<ProductState> {
 #### State Classes
 
 ```dart
-@immutable
 sealed class ProductState {}
-
-final class ProductInitial extends ProductState {}
 final class ProductLoading extends ProductState {}
 final class ProductSuccess extends ProductState {
   final List<ProductModel> products;
@@ -77,45 +69,6 @@ final class ProductFailure extends ProductState {
 
 The app uses **Dio** as the HTTP client with comprehensive configuration for production-ready networking.
 
-#### DioClient Configuration
-
-```dart
-class DioClient {
-  static Dio create() {
-    final dio = Dio(BaseOptions(
-      baseUrl: kBaseUrl,
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
-      connectTimeout: const Duration(minutes: 2),
-      receiveTimeout: const Duration(minutes: 2),
-      sendTimeout: const Duration(minutes: 2),
-    ));
-
-    // Token interceptor for authentication
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) async {
-        final currentToken = await CacheHelper.getSecuredData(key: kAccessToken);
-        if (currentToken != null) {
-          options.headers['Authorization'] = 'Bearer $currentToken';
-        }
-        handler.next(options);
-      },
-    ));
-
-    // Logger for debugging
-    dio.interceptors.add(PrettyDioLogger(
-      requestHeader: true,
-      requestBody: true,
-      responseBody: true,
-      enabled: kDebugMode,
-    ));
-
-    return dio;
-  }
-}
-```
 
 #### Network Features
 
@@ -156,21 +109,14 @@ abstract class ProductApiService {
 
 ### Repository Pattern
 
-Clean separation between data sources and business logic using the Repository pattern.
-
 ```dart
 class ProductRepositoryImpl implements ProductRepository {
-  final ProductApiService _productApiService;
-
-  ProductRepositoryImpl(this._productApiService);
-
   @override
   Future<Either<Failure, List<ProductModel>>> getProducts() async {
     try {
       final response = await _productApiService.getProducts();
       return right(response.items);
     } catch (e) {
-      log(e.toString());
       return left(ServerFailure.fromException(e));
     }
   }
@@ -185,12 +131,9 @@ The app uses **GetIt** for dependency injection, ensuring loose coupling and tes
 
 ```dart
 void setupServiceLocator() {
-  // API Services
   getIt.registerSingleton<ProductApiService>(
     ProductApiService(DioClient.create()),
   );
-
-  // Repositories
   getIt.registerSingleton<ProductRepositoryImpl>(
     ProductRepositoryImpl(getIt<ProductApiService>()),
   );
@@ -209,36 +152,9 @@ void setupServiceLocator() {
 - **Search & Filter**: Find products quickly
 - **Responsive Design**: Adaptive UI for different screen sizes
 
-### Technical Features
-
-- **Offline Support**: Cached data for offline viewing
-- **Image Caching**: Efficient image loading and caching
-- **Error Handling**: Graceful error handling with user feedback
-- **Loading States**: Skeleton loading and progress indicators
-- **Navigation**: Clean navigation with route management
-- **Form Validation**: Robust form validation
-
-## 🎨 UI/UX Design
-
-### Design System
-
-- **Material Design 3**: Modern Material Design guidelines
-- **Responsive Layout**: Adapts to different screen sizes
-- **Dark/Light Mode**: Support for system theme preferences
-- **Consistent Spacing**: Standardized spacing system
-- **Typography**: Clear typography hierarchy
-
-### UI Components
-
-- **Custom Widgets**: Reusable UI components
-- **Animations**: Smooth transitions and micro-interactions
-- **Bottom Navigation**: Persistent bottom navigation
-- **App Bars**: Contextual app bars with actions
-- **Cards**: Modern card-based layouts
 
 ## 📦 Dependencies
 
-### Core Dependencies
 
 ```yaml
 dependencies:
@@ -248,101 +164,8 @@ dependencies:
   get_it: ^8.2.0               # Dependency injection
   dartz: ^0.10.1               # Functional programming
   cached_network_image: ^3.3.1  # Image caching
-  flutter_screenutil: ^5.9.3   # Responsive design
-  json_annotation: ^4.9.0      # JSON serialization
-
-dev_dependencies:
-  build_runner: ^2.9.0         # Code generation
-  retrofit_generator: ^10.0.6   # Retrofit code generation
-  json_serializable: ^6.11.1   # JSON serialization
 ```
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Flutter SDK (>=3.8.1)
-- Dart SDK
-- Android Studio / VS Code
-- Git
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/osamamohamedr1/e-commerce-task.git
-   cd e-commerce-task
-   ```
-
-2. **Install dependencies**
-   ```bash
-   flutter pub get
-   ```
-
-3. **Generate code**
-   ```bash
-   flutter packages pub run build_runner build
-   ```
-
-4. **Run the app**
-   ```bash
-   flutter run
-   ```
-
-### Code Generation
-
-The project uses code generation for Retrofit and JSON serialization:
-
-```bash
-# Generate once
-flutter packages pub run build_runner build
-
-# Watch for changes
-flutter packages pub run build_runner watch
-
-# Clean and rebuild
-flutter packages pub run build_runner build --delete-conflicting-outputs
-```
-
-## 🏃‍♂️ Running the App
-
-### Development
-
-```bash
-flutter run --debug
-```
-
-### Production
-
-```bash
-flutter run --release
-```
-
-### Build APK
-
-```bash
-flutter build apk --release
-```
-
-## 🧪 Testing
-
-### Unit Tests
-
-```bash
-flutter test
-```
-
-### Widget Tests
-
-```bash
-flutter test test/widget_test.dart
-```
-
-### Integration Tests
-
-```bash
-flutter test integration_test/
-```
 
 ## 📁 Project Structure
 
@@ -388,56 +211,14 @@ lib/
 └── main.dart                     # App entry point
 ```
 
-## 🔄 State Flow
 
-```mermaid
-graph TD
-    A[UI Event] --> B[Cubit Method]
-    B --> C[Repository Call]
-    C --> D[API Service]
-    D --> E[Network Request]
-    E --> F[Response]
-    F --> G[Model Parsing]
-    G --> H[Repository Result]
-    H --> I[Cubit State Update]
-    I --> J[UI Rebuild]
-```
-
-## 🌐 API Integration
-
-### Base Configuration
-
-```dart
-const String kBaseUrl = 'https://api.example.com/';
-const String kProductsEndPoint = 'products';
-```
-
-### Error Handling
-
-```dart
-abstract class Failure {
-  final String errorMessage;
-  const Failure(this.errorMessage);
-}
-
-class ServerFailure extends Failure {
-  const ServerFailure(super.errorMessage);
-  
-  factory ServerFailure.fromException(dynamic exception) {
-    if (exception is DioException) {
-      return ServerFailure(exception.message ?? 'Network error');
-    }
-    return const ServerFailure('Unexpected error occurred');
-  }
-}
-```
 
 ## 📸 Screenshots
 
 > **Note**: Screenshots showcasing the app's features and UI design.
 
 ### Authentication Flow
-<!-- Add authentication screenshots here -->
+
 
 ### Home & Product Catalog
 <!-- Add home screen screenshots here -->
@@ -451,30 +232,6 @@ class ServerFailure extends Failure {
 ### User Profile
 <!-- Add profile screenshots here -->
 
----
 
-## 🤝 Contributing
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Team
-
-- **Lead Developer**: [Your Name]
-- **UI/UX Designer**: [Designer Name]
-- **Project Manager**: [PM Name]
-
-## 📞 Support
-
-For support, email support@example.com or join our Slack channel.
-
----
 
 *Built with ❤️ using Flutter*
