@@ -238,4 +238,3 @@ lib/
 
 
 
-*Built with ❤️ using Flutter*
